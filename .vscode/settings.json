@@ -1,0 +1,14 @@
+{
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": [
+        "source.organizeImports",
+        "source.fixAll"
+    ],
+    "javascript.format.enable": false,
+    "eslint.alwaysShowStatus": true,
+    "eslint.options": {
+      "extensions": [ ".html", ".js", ".vue", ".jsx" ]
+    }
+}
+
+
