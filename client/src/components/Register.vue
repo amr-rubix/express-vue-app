@@ -46,9 +46,6 @@
               label="Register"
             />
           </q-card-actions>
-          <q-card-section class="text-center q-pa-none">
-            <p class="text-grey-6">Already reigistered? Login</p>
-          </q-card-section>
         </q-card>
       </div>
     </div>

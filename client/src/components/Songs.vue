@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="full-height full-width flex flex-center text-center">
-      <div class="container">
+      <div class="container full-width">
         <div class="text-h6">WELCOME TO THE SONGS PAGE</div>
         <q-btn
           @click="navigateTo({ name: 'newSong' })"
@@ -71,6 +71,9 @@ export default {
   border-top: 3px solid #1595de;
   border-bottom: 3px solid #2faa64;
   padding: 5%;
+  width:70%;
+  margin: 0 auto;
+  margin-top: 1%;
 }
 
 .song {
