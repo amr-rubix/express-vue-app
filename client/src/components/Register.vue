@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import auth from "../services/auth";
+import AuthenticationService from "../services/AuthenticationService";
 import { mapActions } from "vuex";
 
 export default {
@@ -72,7 +72,7 @@ export default {
     ...mapActions(["setUser", "setToken"]),
     async register() {
       try {
-        const response = await auth.register({
+        const response = await AuthenticationService.register({
           email: this.email,
           password: this.password,
         });

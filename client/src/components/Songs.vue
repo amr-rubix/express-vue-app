@@ -39,12 +39,8 @@
 <script>
 import SongsService from "../services/SongsService";
 import { mapActions, mapGetters } from "vuex";
-// import Song from './Song.vue'
 export default {
   name: "Songs",
-  // components:{
-  //   Song
-  // },
   computed: {
     ...mapGetters(["songs"]),
   },
