@@ -32,6 +32,8 @@
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.12",
     "sequelize": "^6.6.5",
+    "sql-escape": "^1.0.1",
+    "sqlstring": "^2.3.2",
     "squel": "^5.13.0"
   }
 }

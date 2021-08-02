@@ -17,16 +17,19 @@
 const Promise = require('bluebird')
 const pool = require('../db/pool')
 const squel = require('squel')
-const { resolve } = require('bluebird')
-
+const escape = require('sql-escape')
 const Song = {
   create: async (song) => {
-    resolve('ello')
+    const escapedSong = {
+      ...song,
+      lyrics: escape(song.lyrics),
+      tab: escape(song.tab)
+    }
     return new Promise((resolve, reject) => {
       const query = squel
         .insert()
         .into('songs')
-        .setFieldsRows([song])
+        .setFieldsRows([escapedSong])
         .toString()
       pool.query(query, (err, result) => {
         if (err) {
@@ -73,11 +76,16 @@ const Song = {
     })
   },
   update: async (song, id) => {
+    const escapedSong = {
+      ...song,
+      lyrics: escape(song.lyrics),
+      tab: escape(song.tab)
+    }
     return new Promise((resolve, reject) => {
       const query = squel
         .update()
         .table('songs')
-        .setFields(song)
+        .setFields(escapedSong)
         .toString()
       pool.query(query, (err, rows) => {
         if (err) {

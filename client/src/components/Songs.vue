@@ -80,10 +80,18 @@ export default {
 .my-card-container {
   max-width: 25%;
   margin: 1%;
+  max-height: 250px;
+  /* overflow: hidden; */
 }
 .my-card {
-  min-height: 200px;
+  /* min-height: 200px; */
+  /* max-height: 100%; */
 }
+
+.my-card img{
+  max-height: 50% !important;
+}
+
 h2 {
   margin: 1%px;
   margin-bottom: 5px;
