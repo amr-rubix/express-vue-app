@@ -15,7 +15,7 @@ const routes = [
     { path: '/songs', component: Songs, name:'songs' },
     { path: '/songs/new', component: CreateSong, name:'newSong' },
     { path: '/song/:id', component: Song, name:'Song' },
-    { path: '/editSong/:id', component: EditSong, name:'editSong' }
+    { path: '/editSong/:id', component: EditSong, name:'EditSong' }
   ]
 const router = createRouter({
   history: createWebHistory(),

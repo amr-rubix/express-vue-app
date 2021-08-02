@@ -1,34 +1,35 @@
 <template>
   <section>
-    <div class="full-height full-width flex flex-center text-center">
-      <div class="container full-width">
-        <div class="text-h6">WELCOME TO THE SONGS PAGE</div>
-        <q-btn
-          @click="navigateTo({ name: 'newSong' })"
-          color="primary"
-          label="Add New"
-        />
-        <div class="text-h2 q-py-sm q-my-md content">
-          <div class="songs" v-for="song in songs" :key="song.id">
-            <div class="song row">
-              <div class="col">
-                <p class="title">{{ song.title }}</p>
-                <p class="artist">{{ song.artist }}</p>
-                <p class="album">{{ song.album }}</p>
-                <q-btn
-                  @click="navigateTo({ name: 'Song', params: { id: song.id } })"
-                  uenlevated
-                  color="light-green-7"
-                  size="lg"
-                  class="full-width"
-                  label="View"
-                />
+    <div class="full-height full-width text-center">
+      <div class="row">
+        <div class="col">
+          <h2>Welcome To The Songs Page</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <q-btn
+            @click="navigateTo({ name: 'newSong' })"
+            color="primary"
+            label="Add New"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col my-card-container" v-for="song in songs" :key="song.id">
+          <q-card class="my-card" >
+            <q-img :src="song.albumImage">
+              <div class="absolute-bottom">
+                <div class="text-h6">{{ song.title }}</div>
+                <div class="text-subtitle2">{{ song.artist }}</div>
               </div>
-              <div class="col">
-                <img :src="song.albumImage" class="image" />
-              </div>
-            </div>
-          </div>
+            </q-img>
+
+            <q-card-actions>
+              <q-btn @click="navigateTo({ name: 'Song', params: { id: song.id } })" flat>View</q-btn>
+              <q-btn @click="navigateTo({ name: 'EditSong', params: { id: song.id } })" flat>Edit</q-btn>
+            </q-card-actions>
+          </q-card>
         </div>
       </div>
     </div>
@@ -66,34 +67,24 @@ export default {
 .container {
   margin: 2%;
 }
+.my-card-container{
+  max-width: 25%;
+  margin: 1%;
+}
+.my-card{
+  min-height: 200px;
+}
+h2 {
+  margin: 1%px;
+  margin-bottom: 5px;
+}
 
 .content {
   border-top: 3px solid #1595de;
   border-bottom: 3px solid #2faa64;
   padding: 5%;
-  width:70%;
+  width: 70%;
   margin: 0 auto;
   margin-top: 1%;
-}
-
-.song {
-  padding: 2%;
-  border: 1px solid;
-}
-
-.title {
-  font-size: 30px;
-}
-
-.artist {
-  font-size: 24px;
-}
-
-.album {
-  font-size: 20px;
-}
-
-.image {
-  width: 70%;
 }
 </style>
