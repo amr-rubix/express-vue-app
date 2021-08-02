@@ -1,6 +1,11 @@
-import { createApp } from "vue";
-import router from "./router";
+import { Quasar } from 'quasar';
+import { createApp } from 'vue';
 import App from "./App.vue";
-let app = createApp(App);
+import quasarUserOptions from './quasar-user-options';
+import router from "./router";
+let app = createApp(App).use(Quasar, quasarUserOptions);
+import store from "./store";
 
-app.use(router).mount("#app");
+app.use(router).use(store).mount("#app");
+
+

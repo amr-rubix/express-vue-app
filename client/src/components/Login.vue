@@ -1,5 +1,5 @@
 <template>
-  <q-page class="window-height window-width row justify-center items-center">
+  <q-page class=" window-height window-width row justify-center items-center">
     <div class="column">
       <div class="row">
         <h5 class="text-h5 text-white q-my-md">Company & Co</h5>
@@ -14,33 +14,23 @@
           </q-card-section>
           <q-card-section>
             <div v-if="error" class="row error">
-          {{ error.message }}
-          <ul>
-            <li v-for="detail in error.details" :key="detail.type">
-              {{ detail.message }}
-            </li>
-          </ul>
+            {{ error }}
       </div>
           </q-card-section>
           <q-card-actions class="q-px-md">
-            <q-btn @click="register" uenlevated color="light-green-7" size="lg" class="full-width" label="Register" />
+            <q-btn @click="login" uenlevated color="light-green-7" size="lg" class="full-width" label="Login" />
           </q-card-actions>
-          <q-card-section class="text-center q-pa-none">
-            <p class="text-grey-6">Already reigistered? Login</p>
-          </q-card-section>
         </q-card>
       </div>
-      
     </div>
   </q-page>
 </template>
 
 <script>
 import auth from '../services/auth'
-import { mapActions} from "vuex";
-
+import { mapActions, mapGetters} from "vuex";
 export default {
-  name: 'home',
+  name: 'login',
   data () {
     return {
       email: '',
@@ -48,37 +38,35 @@ export default {
       error: false
    } 
   },
+  computed:{
+    ...mapGetters(['isUserLoggedIn'])
+  },
   methods: {
     ...mapActions([
-      'setUser',
-      'setToken'
+      'setToken',
+      'setUser'
     ]),
-    async register(){
+    async login(){
       try{
-        const response = await auth.register({
+        const response = await auth.login({
           email: this.email,
           password: this.password
         })
-        this.setUser(response.data.user)
         this.setToken(response.data.token)
+        this.setUser(response.data.user)
         this.$router.push({
           name: 'songs'
         })
       }catch(error){
-        const { message, details } = error.response.data
-        this.error = {
-          message,
-          details
-        }
+        this.error = error.response.data.error
       }
     }
   },
-  watch: {
-    error(value){
-      /**
-       * This is just for testing purposes
-       */
-      console.log(`error value has changed ${value}`)
+  mounted(){
+    if(this.isUserLoggedIn){
+      this.$router.push({
+        name: 'songs'
+      })
     }
   }
 }

@@ -11,5 +11,8 @@ module.exports = {
       host: process.env.HOST || 'localhost'
       // storage: './tabtracker.mysql'
     }
+  },
+  authentication: {
+    jwtSecret: process.env.JWT_SECRET || 'secret'
   }
 }

@@ -1,25 +1,23 @@
 <template>
-  <div>
-    <router-link to="/">Home</router-link>
-    <br>
-    <router-link to="/register">register</router-link>
-    <router-view></router-view>
-  </div>
+  <q-layout view="lHh Lpr lFf">
+    <Header />
+    <q-page-container>
+      <router-view></router-view>
+    </q-page-container>
+  </q-layout>
 </template>
 
 <script>
+import Header from './components/Header.vue'
 export default {
-  data() {
-    return {};
-  }
-};
-</script>
+  components:{
+    Header
+  },
+  name: 'LayoutDefault',
 
-<style scoped>
-img {
-  width: 200px;
+  setup () {
+    return {
+    }
+  }
 }
-h1 {
-  font-family: Arial, Helvetica, sans-serif;
-}
-</style>
+</script>
