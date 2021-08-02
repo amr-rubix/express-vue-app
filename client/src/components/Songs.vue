@@ -17,7 +17,7 @@
       </div>
       <div class="row">
         <div class="col my-card-container" v-for="song in songs" :key="song.id">
-          <q-card class="my-card" >
+          <q-card class="my-card">
             <q-img :src="song.albumImage">
               <div class="absolute-bottom">
                 <div class="text-h6">{{ song.title }}</div>
@@ -26,8 +26,18 @@
             </q-img>
 
             <q-card-actions>
-              <q-btn @click="navigateTo({ name: 'Song', params: { id: song.id } })" flat>View</q-btn>
-              <q-btn @click="navigateTo({ name: 'EditSong', params: { id: song.id } })" flat>Edit</q-btn>
+              <q-btn
+                @click="navigateTo({ name: 'Song', params: { id: song.id } })"
+                flat
+                >View</q-btn
+              >
+              <q-btn
+                @click="
+                  navigateTo({ name: 'EditSong', params: { id: song.id } })
+                "
+                flat
+                >Edit</q-btn
+              >
             </q-card-actions>
           </q-card>
         </div>
@@ -67,11 +77,11 @@ export default {
 .container {
   margin: 2%;
 }
-.my-card-container{
+.my-card-container {
   max-width: 25%;
   margin: 1%;
 }
-.my-card{
+.my-card {
   min-height: 200px;
 }
 h2 {

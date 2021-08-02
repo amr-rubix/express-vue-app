@@ -4,8 +4,8 @@ import EditSong from "../components/EditSong.vue";
 import Home from "../components/Home.vue";
 import Login from "../components/Login.vue";
 import Register from "../components/Register.vue";
-import Song from "../components/Song.vue";
 import Songs from "../components/Songs.vue";
+import ViewSong from "../components/ViewSong.vue";
 
 
 const routes = [
@@ -14,7 +14,7 @@ const routes = [
     { path: '/login', component: Login, name:'login' },
     { path: '/songs', component: Songs, name:'songs' },
     { path: '/songs/new', component: CreateSong, name:'newSong' },
-    { path: '/song/:id', component: Song, name:'Song' },
+    { path: '/song/:id', component: ViewSong, name:'Song' },
     { path: '/editSong/:id', component: EditSong, name:'EditSong' }
   ]
 const router = createRouter({
