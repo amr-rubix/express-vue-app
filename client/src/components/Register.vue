@@ -1,49 +1,62 @@
 <template>
   <q-page class="window-height window-width row justify-center items-center">
-    <div class="column">
-      <div class="row">
-        <q-card square bordered class="q-pa-lg shadow-1">
-          <q-card-section>
-            <q-form class="q-gutter-md">
-              <q-input
-                square
-                filled
-                clearable
-                v-model="email"
-                type="email"
-                label="email"
-              />
-              <q-input
-                square
-                filled
-                clearable
-                v-model="password"
-                type="password"
-                label="password"
-              />
-            </q-form>
-          </q-card-section>
-          <q-card-section>
-            <div v-if="error" class="row error">
-              {{ error.message }}
-              <ul>
-                <li v-for="detail in error.details" :key="detail.type">
-                  {{ detail.message }}
-                </li>
-              </ul>
-            </div>
-          </q-card-section>
-          <q-card-actions class="q-px-md">
+    <div class="row container">
+      <div class="col">
+        <h2>Hello,</h2>
+        <p>Please Register with your crendetials</p>
+      </div>
+      <div class="col">
+        <div class="q-pa-md">
+          <q-form class="q-gutter-md" @submit="register">
+            <q-input
+              filled
+              type="email"
+              v-model="email"
+              label="Your email *"
+              hint="email address"
+              lazy-rules
+              :rules="[
+                (val) => (val && val.length > 0) || 'Please type your email',
+              ]"
+            />
+
+            <q-input
+              filled
+              type="password"
+              v-model="password"
+              label="Your password"
+              lazy-rules
+              :rules="[
+                (val) =>
+                  (val !== null && val !== '') || 'Please type your password',
+              ]"
+            />
+            <q-card-section>
+              <div v-if="error" class="row error">
+                {{ error.message }}
+                <ul>
+                  <li v-for="detail in error.details" :key="detail.type">
+                    {{ detail.message }}
+                  </li>
+                </ul>
+              </div>
+            </q-card-section>
             <q-btn
               @click="register"
-              uenlevated
-              color="light-green-7"
-              size="lg"
-              class="full-width"
               label="Register"
+              type="submit"
+              color="primary"
             />
-          </q-card-actions>
-        </q-card>
+            <q-btn
+              @click="navigateTo({ name: 'login' })"
+              label="Login"
+              type="reset"
+              color="primary"
+              flat
+              class="q-ml-sm"
+            />
+          </q-form>
+        </div>
       </div>
     </div>
   </q-page>
@@ -54,7 +67,7 @@ import AuthenticationService from "../services/AuthenticationService";
 import { mapActions } from "vuex";
 
 export default {
-  name: "home",
+  name: "Register",
   data() {
     return {
       email: "",
@@ -64,6 +77,9 @@ export default {
   },
   methods: {
     ...mapActions(["setUser", "setToken"]),
+    navigateTo(path) {
+      this.$router.push(path);
+    },
     async register() {
       try {
         const response = await AuthenticationService.register({
@@ -98,10 +114,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .q-card {
-  width: 360px;
+  width: 560px;
 }
-
+h2 {
+  margin: 0px;
+  margin-bottom: 2%;
+}
 .error {
   color: red;
+}
+
+.container {
+  width: 70%;
 }
 </style>

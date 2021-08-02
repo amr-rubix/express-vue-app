@@ -78,7 +78,7 @@ module.exports = {
     } catch (err) {
       console.log(err)
       res.status(400).send({
-        error: 'Email already in use.'
+        message: 'Email already in use.'
       })
     }
   },

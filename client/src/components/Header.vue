@@ -1,35 +1,35 @@
 <template>
-  <q-header elevated class="glossy">
-    <q-toolbar>
-      <q-toolbar-title>
-        <span @click="navigateTo({ name: 'home' })" class="pointer">
-          TabTracker
-        </span>
-      </q-toolbar-title>
-
-      <q-btn
-        @click="navigateTo({ name: 'songs' })"
-        color="amber"
-        glossy
-        label="Browse"
-      />
-      <div v-if="!isUserLoggedIn">
-        <q-btn
-          @click="navigateTo({ name: 'login' })"
-          color="primary"
+  <div class="q-pa-md">
+    <q-toolbar class="bg-purple text-white shadow-2 rounded-borders">
+      <q-btn flat label="TabTracker" @click="navigateTo({ name: 'home' })" />
+      <q-space />
+      <q-tabs v-model="tab" shrink>
+        <q-tab
+          name="tab1"
+          label="Browse"
+          @click="navigateTo({ name: 'songs' })"
+        />
+        <q-tab
+          v-if="!isUserLoggedIn"
+          name="tab2"
           label="Login"
+          @click="navigateTo({ name: 'login' })"
         />
-        <q-btn
-          @click="navigateTo({ name: 'register' })"
-          color="secondary"
+        <q-tab
+          v-if="!isUserLoggedIn"
+          name="tab3"
           label="Register"
+          @click="navigateTo({ name: 'register' })"
         />
-      </div>
-      <div v-if="isUserLoggedIn">
-        <q-btn @click="logOut" color="secondary" label="Logout" />
-      </div>
+        <q-tab
+          v-if="isUserLoggedIn"
+          name="tab4"
+          label="Logout"
+          @click="logOut"
+        />
+      </q-tabs>
     </q-toolbar>
-  </q-header>
+  </div>
 </template>
 
 <script>
@@ -53,7 +53,5 @@ export default {
 </script>
 
 <style scoped>
-.pointer {
-  cursor: pointer;
-}
+
 </style>
