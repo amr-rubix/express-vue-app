@@ -1,9 +1,8 @@
 import { createStore } from "vuex";
-
 export default createStore({
   strict:true,
   state: {
-    token: null,
+    token: null || localStorage.getItem('token'),
     user: null,
     songs: []
   },
@@ -25,6 +24,11 @@ export default createStore({
   actions: {
     setToken({commit}, token){
       commit('setToken', token)
+      if(token){
+        localStorage.setItem( 'token', token );
+      }else{
+        localStorage.removeItem('token')
+      }
     },
     setUser({commit}, user){
       commit('setUser', user)
