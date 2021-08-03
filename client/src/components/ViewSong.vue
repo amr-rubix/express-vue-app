@@ -11,21 +11,34 @@
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        {{ song.lyrics }}
+        <div class="row sub-content">
+          <div class="col">
+            <h6>Lyrics</h6>
+            {{ song.lyrics }}
+          </div>
+          <div class="col">
+            <h6>Tabs</h6>
+            {{ song.tab }}
+          </div>
+        </div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        {{ song.tab }}
-      </q-card-section>
-
-      <q-card-section class="q-pt-none">
-        <q-btn
-          class="edit-btn"
-          @click="navigateTo({ name: 'EditSong', params: { id: song.id } })"
-          uenlevated
-          size="lg"
-          label="Edit"
-        />
+        <div class="row">
+          <div class="col">
+            <q-btn
+              color="amber"
+              label="Edit"
+              @click="navigateTo({ name: 'EditSong', params: { id: song.id } })"
+              style="margin-right: 1%"
+            />
+            <q-btn
+              color="secondary"
+              label="Back"
+              @click="navigateTo({ name: 'songs' })"
+            />
+          </div>
+        </div>
       </q-card-section>
     </q-card>
   </div>
@@ -69,25 +82,21 @@ export default {
 
 
 <style scoped>
-.container {
-  margin: 2%;
+.sub-content div {
+  padding: 1%;
+  width: 40%;
+  border: 1px solid grey;
+  margin-right: 1%;
+  border-radius: 5px;
+  text-align: justify;
 }
 
-.edit-btn {
-  margin-top: 2%;
+.sub-content h6 {
+  margin: 0px;
+  margin-bottom: 1%;
 }
 
 .youtube-video {
   height: 400px;
-}
-
-.content {
-  border-top: 3px solid #1595de;
-  border-bottom: 3px solid #2faa64;
-  padding: 5%;
-}
-
-.extra {
-  margin: 2%;
 }
 </style>

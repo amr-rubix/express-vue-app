@@ -1,129 +1,128 @@
 <template>
   <section>
-    <div class="full-height full-width flex flex-center text-center">
+    <div class="full-height full-width text-center">
       <div class="container">
-        <div class="text-h6">Edit Song</div>
+        <div class="row">
+          <div class="col">
+            <h2>Edit Song - {{ song.title }}</h2>
+          </div>
+        </div>
 
-        <div class="content">
-          <q-card-section>
-            <q-form class="q-gutter-lg">
-              <div class="row">
-                <div class="col">
-                  <q-input
-                    :rules="[required]"
-                    square
-                    filled
-                    clearable
-                    v-model="song.title"
-                    type="text"
-                    label="Title"
-                  />
-                </div>
-                <div class="col">
-                  <q-input
-                    :rules="[required]"
-                    square
-                    filled
-                    clearable
-                    v-model="song.artist"
-                    type="text"
-                    label="Artist"
-                  />
-                </div>
-                <div class="col">
-                  <q-input
-                    :rules="[required]"
-                    square
-                    filled
-                    clearable
-                    v-model="song.genre"
-                    type="text"
-                    label="Genre"
-                  />
-                </div>
-              </div>
+        <div class="row">
+          <div class="col">
+            <q-input
+              :rules="[required]"
+              square
+              filled
+              clearable
+              v-model="song.title"
+              type="text"
+              label="Title"
+            />
+          </div>
+          <div class="col">
+            <q-input
+              :rules="[required]"
+              square
+              filled
+              clearable
+              v-model="song.artist"
+              type="text"
+              label="Artist"
+            />
+          </div>
+          <div class="col">
+            <q-input
+              :rules="[required]"
+              square
+              filled
+              clearable
+              v-model="song.genre"
+              type="text"
+              label="Genre"
+            />
+          </div>
+        </div>
 
-              <div class="row">
-                <div class="col">
-                  <q-input
-                    :rules="[required]"
-                    square
-                    filled
-                    clearable
-                    v-model="song.album"
-                    type="text"
-                    label="Album"
-                  />
-                </div>
-                <div class="col">
-                  <q-input
-                    :rules="[required]"
-                    square
-                    filled
-                    clearable
-                    v-model="song.albumImage"
-                    type="text"
-                    label="AlbumImage"
-                  />
-                </div>
-                <div class="col">
-                  <q-input
-                    :rules="[required]"
-                    square
-                    filled
-                    clearable
-                    v-model="song.youtubeId"
-                    type="text"
-                    label="YoutubeId"
-                  />
-                </div>
-              </div>
+        <div class="row">
+          <div class="col">
+            <q-input
+              :rules="[required]"
+              square
+              filled
+              clearable
+              v-model="song.album"
+              type="text"
+              label="Album"
+            />
+          </div>
+          <div class="col">
+            <q-input
+              :rules="[required]"
+              square
+              filled
+              clearable
+              v-model="song.albumImage"
+              type="text"
+              label="AlbumImage"
+            />
+          </div>
+          <div class="col">
+            <q-input
+              :rules="[required]"
+              square
+              filled
+              clearable
+              v-model="song.youtubeId"
+              type="text"
+              label="YoutubeId"
+            />
+          </div>
+        </div>
 
-              <div class="row">
-                <div class="col">
-                  <q-input
-                    :rules="[required]"
-                    square
-                    filled
-                    clearable
-                    v-model="song.lyrics"
-                    type="text"
-                    label="Lyrics"
-                  />
-                </div>
-              </div>
+        <div class="row">
+          <div class="col">
+            <q-input
+              :rules="[required]"
+              square
+              filled
+              clearable
+              v-model="song.lyrics"
+              label="Lyrics"
+              type="textarea"
+            />
+          </div>
+          <div class="col">
+            <q-input
+              :rules="[required]"
+              square
+              filled
+              clearable
+              v-model="song.tab"
+              label="Tab"
+              type="textarea"
+            />
+          </div>
+        </div>
 
-              <div class="row">
-                <div class="col">
-                  <q-input
-                    :rules="[required]"
-                    square
-                    filled
-                    clearable
-                    v-model="song.tab"
-                    type="text"
-                    label="Tab"
-                  />
-                </div>
-              </div>
+        <div class="row" v-if="error">
+          <div class="col error">
+            {{ error }}
+          </div>
+        </div>
 
-              <div class="row error" v-if="error">
-                {{ error }}
-              </div>
-              <div class="row">
-                <div class="col">
-                  <q-btn @click="saveSong" color="primary" label="Save" />
-                </div>
-                <div class="col">
-                  <q-btn
-                    @click="navigateTo({ name: 'songs' })"
-                    color="secondary"
-                    label="Cancel"
-                  />
-                </div>
-              </div>
-            </q-form>
-          </q-card-section>
+        <div class="row">
+          <div class="col">
+            <q-btn @click="saveSong" color="primary" label="Save" />
+          </div>
+          <div class="col">
+            <q-btn
+              @click="navigateTo({ name: 'songs' })"
+              color="secondary"
+              label="Cancel"
+              flat
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -133,7 +132,6 @@
 
 <script>
 import SongsService from "../services/SongsService";
-// import { mapActions, mapGetters} from "vuex";
 export default {
   data() {
     return {

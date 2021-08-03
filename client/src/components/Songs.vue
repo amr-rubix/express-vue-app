@@ -18,7 +18,7 @@
       <div class="row">
         <div class="col my-card-container" v-for="song in songs" :key="song.id">
           <q-card class="my-card">
-            <q-img :src="song.albumImage">
+            <q-img :src="song.albumImage" style="height: 300px;">
               <div class="absolute-bottom">
                 <div class="text-h6">{{ song.title }}</div>
                 <div class="text-subtitle2">{{ song.artist }}</div>
@@ -83,10 +83,7 @@ export default {
   max-height: 250px;
   /* overflow: hidden; */
 }
-.my-card {
-  /* min-height: 200px; */
-  /* max-height: 100%; */
-}
+
 
 .my-card img{
   max-height: 50% !important;

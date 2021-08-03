@@ -86,9 +86,11 @@ const Song = {
         .update()
         .table('songs')
         .setFields(escapedSong)
+        .where('id = ?', id)
         .toString()
       pool.query(query, (err, rows) => {
         if (err) {
+          console.log('error here', err)
           reject(err)
         }
         if (rows) {
